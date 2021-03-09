@@ -18,3 +18,5 @@ Route::get(
         return view('welcome');
     }
 );
+
+Route::resource('urls', UrlController::class);
