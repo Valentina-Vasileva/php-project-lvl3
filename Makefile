@@ -29,7 +29,7 @@ deploy:
 	git push heroku
 
 lint:
-	composer phpcs
+	composer phpcs routes/web.php 
 
 lint-fix:
-	composer phpcbf
+	composer phpcbf routes/web.php
