@@ -53,12 +53,14 @@ class UrlController extends Controller
         if (empty($url)) {
             $newUrl = new Url(['name' => $normalizedUrl]);
             $newUrl->save();
-            $request->session()->flash('status', 'Страница успешно добавлена');
-            return redirect()->route('urls.show', ['url' => $newUrl->id]);
+            return redirect()
+                ->route('urls.show', ['url' => $newUrl->id])
+                ->with('status', 'Страница успешно добавлена');
         }
 
-        $request->session()->flash('status', 'Страница уже существует');
-        return redirect()->route('urls.show', ['url' => $url->id]);
+        return redirect()
+            ->route('urls.show', ['url' => $url->id])
+            ->with('status', 'Страница уже существует');
 
     }
 
