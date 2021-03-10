@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Url;
 use Illuminate\Http\Request;
+use App\Rules\CorrectUrl;
 
 class UrlController extends Controller
 {
@@ -14,7 +16,8 @@ class UrlController extends Controller
      */
     public function index()
     {
-        //
+        $urls = DB::table('urls')->get();
+        return view('url.index', compact('urls'));
     }
 
     /**
@@ -35,7 +38,28 @@ class UrlController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate(
+            [
+                'name' => ['required', new CorrectUrl()]
+            ]
+        );
+
+        $parsedUrl = parse_url($data['name']);
+        $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
+        $url = DB::table('urls')
+            ->where('name', $normalizedUrl)
+            ->first();
+        
+        if (empty($url)) {
+            $newUrl = new Url(['name' => $normalizedUrl]);
+            $newUrl->save();
+            $request->session()->flash('status', 'Страница успешно добавлена');
+            return redirect()->route('urls.show', ['url' => $newUrl->id]);
+        }
+
+        $request->session()->flash('status', 'Страница уже существует');
+        return redirect()->route('urls.show', ['url' => $url->id]);
+
     }
 
     /**
@@ -44,9 +68,10 @@ class UrlController extends Controller
      * @param  \App\Models\Url  $url
      * @return \Illuminate\Http\Response
      */
-    public function show(Url $url)
+    public function show(Request $request, Url $url)
     {
-        //
+        $flash = $request->session()->get('status', null);
+        return view('url.show', compact('url', 'flash'));
     }
 
     /**
