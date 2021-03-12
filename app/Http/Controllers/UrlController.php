@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Url;
 use Illuminate\Http\Request;
 use App\Rules\CorrectUrl;
+use App\Http\Requests\StoreUrlRequest;
 
 class UrlController extends Controller
 {
@@ -36,14 +37,10 @@ class UrlController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUrlRequest $request)
     {
-        $data = $request->validate(
-            [
-                'name' => ['required', new CorrectUrl()]
-            ]
-        );
-
+        $data = $request->validated();
+        
         $parsedUrl = parse_url($data['name']);
         $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
         $url = DB::table('urls')
