@@ -9,7 +9,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="{{ asset('js/app.js') }}"></script>
     </head>
-    <body class="min-vh-100 d-flex flex-column">
+    <body class="min-vh-100 d-flex flex-column bg-light">
         <header>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
                 <a class="navbar-brand" href="{{ route('welcome') }}">Анализатор страниц</a>

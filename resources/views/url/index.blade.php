@@ -3,10 +3,10 @@
 @section('content')
     @if ($urls)
     <div class="container">
-        <h1>Сайты</h1>
+        <h1 class="mt-5 mb-3">Сайты</h1>
         <div class="row">
             <div class="col">
-                <table class="table">
+                <table class="table table-hover table-bordered table-responsive">
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Имя</th>
