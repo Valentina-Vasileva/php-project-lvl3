@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
-@if ($flash)
-    <div class="alert alert-success" role="alert">
-        <p>{{ $flash }}</p>
-    </div>
-@endif
-
 @section('content')
+    @if ($flash)
+        <div class="alert alert-success" role="alert">
+            {{ $flash }}
+        </div>
+    @endif
     <div class="container">
         <h1>Сайт: {{ $url->name }}</h1>
         <div class="row">
