@@ -25,7 +25,7 @@ class StoreUrlRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', new CorrectUrl()]
+            'url.name' => ['required', new CorrectUrl()]
         ];
     }
     /**
@@ -36,7 +36,7 @@ class StoreUrlRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Некорректный URL'
+            'url.name.required' => 'Некорректный URL'
         ];
     }
 }

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use App\Models\Url;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUrlRequest;
+use Carbon\Carbon;
 
 class UrlController extends Controller
 {
@@ -22,16 +21,6 @@ class UrlController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,24 +30,28 @@ class UrlController extends Controller
     {
         $data = $request->validated();
         
-        $parsedUrl = parse_url($data['name']);
+        $parsedUrl = parse_url($data['url']['name']);
         $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
         $url = DB::table('urls')
             ->where('name', $normalizedUrl)
             ->first();
         
         if (empty($url)) {
-            $newUrl = new Url(['name' => $normalizedUrl]);
-            $newUrl->save();
+            $newUrl = DB::table('urls')->insertGetId(
+                [
+                    'name' => $normalizedUrl,
+                    'created_at' => Carbon::now()->toString(),
+                    'updated_at' => Carbon::now()->toString()
+                ]
+            );
+
             return redirect()
-                ->route('urls.show', ['url' => $newUrl->id])
+                ->route('urls.show', ['url' => $newUrl])
                 ->with('status', 'Страница успешно добавлена');
         }
-
         return redirect()
             ->route('urls.show', ['url' => $url->id])
             ->with('status', 'Страница уже существует');
-
     }
 
     /**
@@ -67,45 +60,15 @@ class UrlController extends Controller
      * @param  \App\Models\Url  $url
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Url $url)
+    public function show(Request $request, int $id)
     {
-        $url->created_at = new Carbon($url->created_at, 'Europe/Moscow');
-        $url->updated_at = new Carbon($url->updated_at, 'Europe/Moscow');
+        $url = DB::table('urls')->find($id);
+        
+        if ($url === null) {
+            abort(404);
+        }
+
         $flash = $request->session()->get('status', null);
         return view('url.show', compact('url', 'flash'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Url  $url
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Url $url)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Url  $url
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Url $url)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Url  $url
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Url $url)
-    {
-        //
     }
 }

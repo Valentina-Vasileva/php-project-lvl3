@@ -17,4 +17,8 @@ use App\Http\Controllers\UrlController;
 
 Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 
-Route::resource('urls', UrlController::class);
+Route::resource('urls', UrlController::class)->except(
+    [
+        'create', 'edit', 'update', 'destroy'
+    ]
+);
