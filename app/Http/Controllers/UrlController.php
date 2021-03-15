@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Url;
 use Illuminate\Http\Request;
@@ -68,6 +69,8 @@ class UrlController extends Controller
      */
     public function show(Request $request, Url $url)
     {
+        $url->created_at = new Carbon($url->created_at, 'Europe/Moscow');
+        $url->updated_at = new Carbon($url->updated_at, 'Europe/Moscow');
         $flash = $request->session()->get('status', null);
         return view('url.show', compact('url', 'flash'));
     }
