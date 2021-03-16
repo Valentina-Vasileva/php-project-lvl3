@@ -29,13 +29,13 @@ class UrlController extends Controller
     public function store(StoreUrlRequest $request)
     {
         $data = $request->validated();
-        
+
         $parsedUrl = parse_url($data['url']['name']);
         $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
         $url = DB::table('urls')
             ->where('name', $normalizedUrl)
             ->first();
-        
+
         if (empty($url)) {
             $newUrl = DB::table('urls')->insertGetId(
                 [
@@ -63,7 +63,7 @@ class UrlController extends Controller
     public function show(Request $request, int $id)
     {
         $url = DB::table('urls')->find($id);
-        
+
         if ($url === null) {
             abort(404);
         }

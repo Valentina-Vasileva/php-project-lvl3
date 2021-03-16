@@ -19,7 +19,6 @@ class CorrectUrl implements Rule
         $parsedUrl = parse_url($value);
 
         return array_key_exists('scheme', $parsedUrl) && array_key_exists('host', $parsedUrl);
-
     }
 
     /**
