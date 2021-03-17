@@ -21,10 +21,10 @@ class UrlController extends Controller
             ->groupBy('url_id');
 
         $urls = DB::table('urls')
-            ->rightJoinSub($latestChecks, 'latest_checks', function ($join) {
+            ->leftJoinSub($latestChecks, 'latest_checks', function ($join) {
                 $join->on('urls.id', '=', 'latest_checks.url_id');
             })
-            ->join('url_checks', 'latest_checks.last_check_id', '=', 'url_checks.id')
+            ->leftJoin('url_checks', 'latest_checks.last_check_id', '=', 'url_checks.id')
             ->select('urls.id as id', 'urls.name as name', 'url_checks.created_at as last_check', 'url_checks.status_code as status_code')
             ->orderBy('id', 'asc')
             ->get();
