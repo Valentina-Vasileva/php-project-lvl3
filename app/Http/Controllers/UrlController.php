@@ -68,7 +68,12 @@ class UrlController extends Controller
             abort(404);
         }
 
+        $urlChecks = DB::table('url_checks')
+            ->where('url_id', $id)
+            ->orderBy('id', 'desc')
+            ->get();
+
         $flash = $request->session()->get('status', null);
-        return view('url.show', compact('url', 'flash'));
+        return view('url.show', compact('url', 'urlChecks', 'flash'));
     }
 }
