@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Url extends Model
+class UrlCheck extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
-
-    public function checks()
+    public function url()
     {
-        return $this->hasMany('App\Models\UrlCheck');
+        return $this->belongsTo('App\Models\Url');
     }
-
 }
