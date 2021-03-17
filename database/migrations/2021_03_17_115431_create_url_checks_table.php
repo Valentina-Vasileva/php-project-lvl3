@@ -17,10 +17,10 @@ class CreateUrlChecksTable extends Migration
             $table->id();
             $table->bigInteger('url_id');
             $table->foreign('url_id')->references('id')->on('urls');
-            $table->integer('status_code');
-            $table->text('h1');
-            $table->text('keywords');
-            $table->text('description');
+            $table->integer('status_code')->nullable();
+            $table->text('h1')->nullable();
+            $table->text('keywords')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
