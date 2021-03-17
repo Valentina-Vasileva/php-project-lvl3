@@ -15,5 +15,4 @@ class Url extends Model
     {
         return $this->hasMany('App\Models\UrlCheck');
     }
-
 }
