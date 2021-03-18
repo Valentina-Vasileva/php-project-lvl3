@@ -27,11 +27,15 @@ class UrlCheckControllerTest extends TestCase
 
         $newUrlId = DB::table('urls')->insertGetId($urlData);
 
-        Http::fake([$urlData['name'] => Http::response('hello world', 255, ['header'])]);
+        $testHtml = file_get_contents(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', "Fixtures", 'test.html']));
+        Http::fake([$urlData['name'] => Http::response($testHtml, 255)]);
 
         $expectedData = [
             'url_id' => $newUrlId,
-            'status_code' => 255
+            'status_code' => 255,
+            'h1' => 'test_header',
+            'keywords' => 'test_word',
+            'description' => 'test_description'
         ];
 
         $response = $this->post(route('urls.checks.store', $newUrlId));
