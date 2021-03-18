@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use DiDom\Document;
 
 class UrlCheckController extends Controller
 {
@@ -24,12 +25,18 @@ class UrlCheckController extends Controller
         }
         try {
             $response = Http::get($url->name);
-
+            $document = new Document($response->body());
+            $h1 = optional($document->first('h1'))->text();
+            $keywords = optional($document->first('meta[name=keywords]'))->getAttribute('content');
+            $description = optional($document->first('meta[name=description]'))->getAttribute('content');
             $newUrl = DB::table('url_checks')->insertGetId(
                 [
                     'url_id' => $id,
                     'created_at' => Carbon::now()->toString(),
                     'status_code' => $response->status(),
+                    'h1' => $h1,
+                    'keywords' => $keywords,
+                    'description' => $description,
                     'updated_at' => Carbon::now()->toString()
                 ]
             );
