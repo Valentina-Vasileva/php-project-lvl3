@@ -28,6 +28,11 @@ class UrlCheckControllerTest extends TestCase
         $newUrlId = DB::table('urls')->insertGetId($urlData);
 
         $testHtml = file_get_contents(implode(DIRECTORY_SEPARATOR, [__DIR__, '..', "Fixtures", 'test.html']));
+
+        if ($testHtml === false) {
+            throw new \Exception("Cannot get content from fixture");
+        }
+
         Http::fake([$urlData['name'] => Http::response($testHtml, 255)]);
 
         $expectedData = [

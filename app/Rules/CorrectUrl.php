@@ -18,6 +18,10 @@ class CorrectUrl implements Rule
     {
         $parsedUrl = parse_url($value);
 
+        if ($parsedUrl === false) {
+            throw new \Exception("Cannot parse the URL");
+        }
+
         return array_key_exists('scheme', $parsedUrl) && array_key_exists('host', $parsedUrl);
     }
 
