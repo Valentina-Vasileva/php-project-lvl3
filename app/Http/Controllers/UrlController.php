@@ -14,7 +14,7 @@ class UrlController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(): \Illuminate\View\View
+    public function index()
     {
         $latestChecks = DB::table('url_checks')
             ->select(DB::raw('url_id, MAX(id) as last_check_id'))
@@ -38,7 +38,7 @@ class UrlController extends Controller
      * @param  \App\Http\Requests\StoreUrlRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreUrlRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(StoreUrlRequest $request)
     {
         $data = $request->validated();
 
@@ -71,7 +71,7 @@ class UrlController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show(Request $request, int $id): \Illuminate\View\View
+    public function show(Request $request, int $id)
     {
         $url = DB::table('urls')->find($id);
 
