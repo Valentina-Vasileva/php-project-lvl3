@@ -14,14 +14,14 @@ class UrlController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): object
     {
         $latestChecks = DB::table('url_checks')
             ->select(DB::raw('url_id, MAX(id) as last_check_id'))
             ->groupBy('url_id');
 
         $urls = DB::table('urls')
-            ->leftJoinSub($latestChecks, 'latest_checks', function ($join) {
+            ->leftJoinSub($latestChecks, 'latest_checks', function ($join): void {
                 $join->on('urls.id', '=', 'latest_checks.url_id');
             })
             ->leftJoin('url_checks', 'latest_checks.last_check_id', '=', 'url_checks.id')
@@ -38,7 +38,7 @@ class UrlController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUrlRequest $request)
+    public function store(StoreUrlRequest $request): object
     {
         $data = $request->validated();
 
@@ -69,10 +69,9 @@ class UrlController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Url  $url
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, int $id)
+    public function show(Request $request, int $id): object
     {
         $url = DB::table('urls')->find($id);
 

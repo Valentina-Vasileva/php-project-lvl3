@@ -16,7 +16,7 @@ class UrlCheckController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, int $id): object
     {
         $url = DB::table('urls')->find($id);
 
@@ -40,7 +40,6 @@ class UrlCheckController extends Controller
                     'updated_at' => Carbon::now()->toString()
                 ]
             );
-
             return redirect()
                 ->route('urls.show', ['url' => $id])
                 ->with('status', 'Страница успешно проверена');
