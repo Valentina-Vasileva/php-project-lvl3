@@ -16,7 +16,7 @@ class UrlCheckController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, int $id): object
+    public function store(Request $request, int $id): \Illuminate\Http\RedirectResponse
     {
         $url = DB::table('urls')->find($id);
 
