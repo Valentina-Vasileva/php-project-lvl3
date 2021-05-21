@@ -3,15 +3,15 @@
 ![](https://github.com/Valentina-Vasileva/php-project-lvl3/workflows/Tests%20and%20linter/badge.svg)
 <a href="https://codeclimate.com/github/Valentina-Vasileva/php-project-lvl3/maintainability"><img src="https://api.codeclimate.com/v1/badges/aac8c9eed73342cf6ee4/maintainability" /></a>
 
-PAGE ANALYZER
-=============
+АНАЛИЗАТОР СТРАНИЦ
+==================
 ### http://vvs-php-project-lvl3.herokuapp.com
-The page analyzer checks if a site can be used for SEO. Check your site for free now!
+Анализатор страниц проверяет указанные страницы на SEO пригодность.
 
-Usage
------
-1. Type an URL of site you want to check
-2. On the page of site push the button "Run check"
-3. See the information provided
+Использование
+-------------
+1. Напиши URL страницы, которую нужно проверить;
+2. Нажми "ПРОВЕРИТЬ";
+3. Смотри представленную информацию.
 
-Also you can see all sites which have been checked by other people.
+Также ты можешь посмотреть все страницы, которые уже были проверены другими людьми.
