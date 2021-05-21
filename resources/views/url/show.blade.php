@@ -21,9 +21,9 @@
                     <table class="table table-hover table-bordered">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Имя</th>
-                            <th scope="col">Дата создания</th>
-                            <th scope="col">Дата обновления</th>
+                            <th scope="col">{{ __('Name') }}</th>
+                            <th scope="col">{{ __('Date of creation') }}</th>
+                            <th scope="col">{{ __('Date of update') }}</th>
                         </tr>
                         <tr>
                             <td>{{ $url->id }}</td>
@@ -35,20 +35,20 @@
                 </div>
             </div>
         </div>
-        <h2 class="mt-5 mb-3">Проверки</h2>
+        <h2 class="mt-5 mb-3">{{ __('Cheks') }}</h2>
             {{ Form::open(['url' => route('urls.checks.store', [$url->id])]) }}
-                {{ Form::submit('Запустить проверку', array('class' => 'btn btn-lg btn-primary mb-3')) }}
+                {{ Form::submit(__('Run check'), array('class' => 'btn btn-lg btn-primary mb-3')) }}
             {{ Form::close() }}
         <div class="row">
             <div class="col">
             <table class="table table-hover table-bordered table-responsive">
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Код ответа</th>
+                        <th scope="col">{{ __('Status code') }}</th>
                         <th scope="col">h1</th>
                         <th scope="col">keywords</th>
                         <th scope="col">description</th>
-                        <th scope="col">Дата создания</th>
+                        <th scope="col">{{ __('Date of creation') }}</th>
                     </tr>
                     @if ($urlChecks)
                         @foreach ($urlChecks as $urlCheck)

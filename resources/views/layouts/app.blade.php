@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Анализатор страниц</title>
+        <title>{{ __('Page analyzer') }}</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="csrf-param" content="_token" />
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -12,14 +12,14 @@
     <body class="min-vh-100 d-flex flex-column bg-light">
         <header>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
-                <a class="navbar-brand" href="{{ route('welcome') }}">Анализатор страниц</a>
+                <a class="navbar-brand" href="{{ route('welcome') }}">{{ __('Page analyzer') }}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarMenu">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('welcome') }}">Главная</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('urls.index') }}">Сайты</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('welcome') }}">{{ __('Main') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('urls.index') }}">{{ __('Sites') }}</a></li>
                     </ul>
                 </div>
             </nav>
