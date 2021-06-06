@@ -25,6 +25,7 @@
             </nav>
         </header>
         <main class="flex-grow-1">
+            @include('flash::message')
             @yield('content')
         </main>
         <footer class="border-top">

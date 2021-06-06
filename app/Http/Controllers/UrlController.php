@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class UrlController extends Controller
 {
@@ -39,11 +40,16 @@ class UrlController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $validator = Validator::make($request->all(), [
             'url.name' => 'required|url'
         ]);
 
-        $parsedUrl = parse_url($data['url']['name']);
+        if ($validator->fails()) {
+            flash(__('messages.Incorrect URL'))->error();
+            return redirect()->route('welcome');
+        }
+
+        $parsedUrl = parse_url($request['url']['name']);
         $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
         $url = DB::table('urls')
             ->where('name', $normalizedUrl)
@@ -58,13 +64,14 @@ class UrlController extends Controller
                 ]
             );
 
+            flash(__('messages.The page has been added successfully'))->success();
             return redirect()
-                ->route('urls.show', ['url' => $newUrl])
-                ->with('status', __('messages.The page has been added successfully'));
+                ->route('urls.show', ['url' => $newUrl]);
         }
+
+        flash(__('messages.The page has already been added'))->success();
         return redirect()
-            ->route('urls.show', ['url' => $url->id])
-            ->with('status', __('messages.The page has already been added'));
+            ->route('urls.show', ['url' => $url->id]);
     }
 
     /**

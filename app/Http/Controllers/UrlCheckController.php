@@ -40,9 +40,9 @@ class UrlCheckController extends Controller
                     'updated_at' => Carbon::now()->toString()
                 ]
             );
+            flash(__('messages.Page has been checked successfully'))->success();
             return redirect()
-                ->route('urls.show', ['url' => $id])
-                ->with('status', __('messages.Page has been checked successfully'));
+                ->route('urls.show', ['url' => $id]);
         } catch (\Exception $e) {
             return redirect()
                 ->route('urls.show', ['url' => $id])

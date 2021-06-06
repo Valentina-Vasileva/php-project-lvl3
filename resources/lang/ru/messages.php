@@ -26,5 +26,6 @@ return [
     'Run check' => 'Запустить проверку',
     'Check for free if sites can be used for SEO' => 'Бесплатно проверяйте сайты на SEO пригодность',
     'Check' => 'Проверить',
-    'Checks' => 'Проверки'
+    'Checks' => 'Проверки',
+    'Incorrect URL' => 'Некорректный URL'
 ];
