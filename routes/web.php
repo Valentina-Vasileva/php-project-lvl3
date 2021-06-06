@@ -20,5 +20,5 @@ Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 
 Route::resources([
     'urls' => UrlController::class,
-    'urls.checks' => UrlCheckController::class,
+    'urls.checks' => UrlCheckController::class
 ]);
