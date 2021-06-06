@@ -18,8 +18,7 @@ use App\Http\Controllers\UrlCheckController;
 
 Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 
-Route::resource('urls', UrlController::class)
-    ->except(['create', 'edit', 'update', 'destroy']);
-
-Route::resource('urls.checks', UrlCheckController::class)
-    ->except(['create', 'edit', 'update', 'destroy', 'index', 'show']);
+Route::resources([
+    'urls' => UrlController::class,
+    'urls.checks' => UrlCheckController::class,
+]);
