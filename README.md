@@ -1,7 +1,7 @@
 ### Tests and linter status:
 [![Actions Status](https://github.com/Valentina-Vasileva/php-project-lvl3/workflows/hexlet-check/badge.svg)](https://github.com/Valentina-Vasileva/php-project-lvl3/actions)
-![](https://github.com/Valentina-Vasileva/php-project-lvl3/workflows/Tests%20and%20linter/badge.svg)
-<a href="https://codeclimate.com/github/Valentina-Vasileva/php-project-lvl3/maintainability"><img src="https://api.codeclimate.com/v1/badges/aac8c9eed73342cf6ee4/maintainability" /></a>
+[![Tests and linter](https://github.com/Valentina-Vasileva/php-project-lvl3/actions/workflows/php.yml/badge.svg)](https://github.com/Valentina-Vasileva/php-project-lvl3/actions/workflows/php.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/aac8c9eed73342cf6ee4/maintainability)](https://codeclimate.com/github/Valentina-Vasileva/php-project-lvl3/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/aac8c9eed73342cf6ee4/test_coverage)](https://codeclimate.com/github/Valentina-Vasileva/php-project-lvl3/test_coverage)
 
 АНАЛИЗАТОР СТРАНИЦ
