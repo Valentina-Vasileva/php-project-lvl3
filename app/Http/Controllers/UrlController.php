@@ -59,11 +59,11 @@ class UrlController extends Controller
 
             return redirect()
                 ->route('urls.show', ['url' => $newUrl])
-                ->with('status', 'Страница успешно добавлена');
+                ->with('status', __('messages.The page has been added successfully'));
         }
         return redirect()
             ->route('urls.show', ['url' => $url->id])
-            ->with('status', 'Страница уже существует');
+            ->with('status', __('messages.The page has already been added'));
     }
 
     /**

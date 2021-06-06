@@ -42,7 +42,7 @@ class UrlCheckController extends Controller
             );
             return redirect()
                 ->route('urls.show', ['url' => $id])
-                ->with('status', 'Страница успешно проверена');
+                ->with('status', __('messages.Page has been checked successfully'));
         } catch (\Exception $e) {
             return redirect()
                 ->route('urls.show', ['url' => $id])

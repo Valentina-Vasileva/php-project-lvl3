@@ -2,16 +2,16 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-5 mb-3">{{ __('Sites') }}</h1>
+        <h1 class="mt-5 mb-3">{{ __('messages.Sites') }}</h1>
         <div class="row">
             <div class="col">
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">{{ __('Name') }}</th>
-                            <th scope="col">{{ __('Last check') }}</th>
-                            <th scope="col">{{ __('Status code') }}</th>
+                            <th scope="col">{{ __('messages.Name') }}</th>
+                            <th scope="col">{{ __('messages.Last check') }}</th>
+                            <th scope="col">{{ __('messages.Status code') }}</th>
                         </tr>
                         @if ($urls)
                             @foreach ($urls as $url)

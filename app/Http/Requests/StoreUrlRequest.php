@@ -36,7 +36,7 @@ class StoreUrlRequest extends FormRequest
     public function messages()
     {
         return [
-            'url.name.required' => 'Некорректный URL'
+            'url.name.required' => __('messages.Incorrect URL')
         ];
     }
 }

@@ -32,6 +32,6 @@ class CorrectUrl implements Rule
      */
     public function message()
     {
-        return 'Некорректный URL';
+        return __('messages.Incorrect URL');
     }
 }
