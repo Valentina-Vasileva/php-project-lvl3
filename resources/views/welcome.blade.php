@@ -16,8 +16,8 @@
                         <h1 class="display-3">{{ __('Page analyzer') }}</h1>
                         <p class="lead">{{ __('Check for free if sites can be used for SEO') }}</p>
                         {{ Form::open(['url' => route('urls.store'), 'class' => 'd-flex justify-content-center']) }}
-                            {{ Form::text('url[name]', '', array('class' => 'form-control form-control-lg', 'placeholder' => 'https://www.example.com', 'value' => $url->name ?? '')) }}
-                            {{ Form::submit(__('Check'), array('class' => 'btn btn-lg btn-primary ms-3 px-5 text-uppercase')) }}
+                            {{ Form::text('url[name]', '', ['class' => 'form-control form-control-lg', 'placeholder' => 'https://www.example.com', 'value' => $url->name ?? '']) }}
+                            {{ Form::submit(__('Check'), ['class' => 'btn btn-lg btn-primary ms-3 px-5 text-uppercase']) }}
                         {{ Form::close() }}
                     </div>
                 </div>

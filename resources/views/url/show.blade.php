@@ -37,7 +37,7 @@
         </div>
         <h2 class="mt-5 mb-3">{{ __('Checks') }}</h2>
             {{ Form::open(['url' => route('urls.checks.store', [$url->id])]) }}
-                {{ Form::submit(__('Run check'), array('class' => 'btn btn-lg btn-primary mb-3')) }}
+                {{ Form::submit(__('Run check'), ['class' => 'btn btn-lg btn-primary mb-3']) }}
             {{ Form::close() }}
         <div class="row">
             <div class="col">
