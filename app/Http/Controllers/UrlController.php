@@ -16,20 +16,22 @@ class UrlController extends Controller
      */
     public function index()
     {
-        $latestChecks = DB::table('url_checks')
+        $lastChecksId = DB::table('url_checks')
             ->select(DB::raw('url_id, MAX(id) as last_check_id'))
-            ->groupBy('url_id');
+            ->groupBy('url_id')
+            ->pluck('last_check_id')
+            ->all();
+
+        $lastChecks = DB::table('url_checks')
+            ->whereIn('id', $lastChecksId)
+            ->get()
+            ->keyBy('url_id');
 
         $urls = DB::table('urls')
-            ->leftJoinSub($latestChecks, 'latest_checks', function ($join): void {
-                $join->on('urls.id', '=', 'latest_checks.url_id');
-            })
-            ->leftJoin('url_checks', 'latest_checks.last_check_id', '=', 'url_checks.id')
-            ->select('urls.id as id', 'urls.name as name', 'url_checks.created_at as last_check', 'url_checks.status_code as status_code')
             ->orderBy('id', 'asc')
             ->get();
 
-        return view('url.index', compact('urls'));
+        return view('url.index', compact('urls', 'lastChecks'));
     }
 
     /**
