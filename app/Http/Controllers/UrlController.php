@@ -46,27 +46,24 @@ class UrlController extends Controller
 
         $parsedUrl = parse_url($data['url']['name']);
         $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
+
         $url = DB::table('urls')
             ->where('name', $normalizedUrl)
             ->first();
 
-        if ($url === null) {
-            $newUrl = DB::table('urls')->insertGetId(
-                [
+        if (is_null($url)) {
+            $id = DB::table('urls')->insertGetId([
                     'name' => $normalizedUrl,
                     'created_at' => Carbon::now()->toString(),
                     'updated_at' => Carbon::now()->toString()
-                ]
-            );
-
+            ]);
             flash(__('messages.The page has been added successfully'))->success();
-            return redirect()
-                ->route('urls.show', ['url' => $newUrl]);
+        } else {
+            $id = $url->id;
+            flash(__('messages.The page has already been added'))->success();
         }
 
-        flash(__('messages.The page has already been added'))->success();
-        return redirect()
-            ->route('urls.show', ['url' => $url->id]);
+        return redirect()->route('urls.show', ['url' => $id]);
     }
 
     /**
