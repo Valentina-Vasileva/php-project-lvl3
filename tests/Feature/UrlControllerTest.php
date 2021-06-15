@@ -2,13 +2,25 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class UrlControllerTest extends TestCase
 {
+    private $urlId;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->urlId = DB::table('urls')->insertGetId([
+                'name' => 'http://' . strtolower(Str::random(10)) . ".ru",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+        ]);
+    }
     /**
      * Test of urls index.
      *
@@ -42,7 +54,7 @@ class UrlControllerTest extends TestCase
      */
     public function testShow()
     {
-        $response = $this->get(route('urls.show', ['url' => 1]));
+        $response = $this->get(route('urls.show', ['url' => $this->urlId]));
         $response->assertOk();
     }
 }
