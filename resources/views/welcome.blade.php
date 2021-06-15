@@ -1,13 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger" role="alert">
-            @foreach ($errors->all() as $error)
-                {{ $error }}
-            @endforeach
-        </div>
-    @endif
     <div class="jumbotron jumbotron-fluid bg-dark pb-5">
         <div class="container">
             <div class="row">
