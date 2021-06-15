@@ -20,8 +20,6 @@
 - Git
 - PHP (версия ^8.0)
 - Composer
-- Node.js (версия ^14.0)
-- npm
 
 #### Установка:
 1. `$ git clone https://github.com/Valentina-Vasileva/php-project-lvl3`
