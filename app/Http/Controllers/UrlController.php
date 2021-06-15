@@ -43,7 +43,7 @@ class UrlController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'url.name' => 'required|url'
+            'url.name' => 'required|url|max:255'
         ]);
 
         $parsedUrl = parse_url($data['url']['name']);
