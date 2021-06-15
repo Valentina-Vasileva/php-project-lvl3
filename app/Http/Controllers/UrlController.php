@@ -87,7 +87,6 @@ class UrlController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        $flash = $request->session()->get('status', null);
-        return view('url.show', compact('url', 'urlChecks', 'flash'));
+        return view('url.show', compact('url', 'urlChecks'));
     }
 }
