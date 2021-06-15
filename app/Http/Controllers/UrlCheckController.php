@@ -41,12 +41,9 @@ class UrlCheckController extends Controller
                 ]
             );
             flash(__('messages.Page has been checked successfully'))->success();
-            return redirect()
-                ->route('urls.show', ['url' => $id]);
         } catch (\Exception $e) {
-            return redirect()
-                ->route('urls.show', ['url' => $id])
-                ->withErrors("{$e->getMessage()}");
+            flash($e->getMessage())->error();
         }
+        return redirect()->route('urls.show', ['url' => $id]);
     }
 }
