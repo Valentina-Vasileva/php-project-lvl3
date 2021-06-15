@@ -6,8 +6,8 @@
         <title>{{ __('messages.Page analyzer') }}</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="csrf-param" content="_token" />
-        <link href="{{ asset('bootstrap.min.css') }}" rel="stylesheet">
-        <script src="{{ asset('bootstrap.bundle.min.js') }}"></script>
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     </head>
     <body class="min-vh-100 d-flex flex-column bg-light">
         <header>
