@@ -20,9 +20,8 @@ class UrlCheckController extends Controller
     {
         $url = DB::table('urls')->find($id);
 
-        if ($url === null) {
-            abort(404);
-        }
+        abort_unless($url, 404);
+
         try {
             $response = Http::get($url->name);
             $document = new Document($response->body());
