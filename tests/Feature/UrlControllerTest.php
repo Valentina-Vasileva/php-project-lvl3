@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class UrlControllerTest extends TestCase
 {
-    private $urlId;
+    private int $urlId;
 
     protected function setUp(): void
     {
