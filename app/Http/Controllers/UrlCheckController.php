@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use DiDom\Document;
 use Illuminate\Http\Client\HttpClientException;
+use GuzzleHttp\Exception\RequestException;
 
 class UrlCheckController extends Controller
 {
@@ -41,7 +42,7 @@ class UrlCheckController extends Controller
                 ]
             );
             flash(__('messages.Page has been checked successfully'))->success();
-        } catch (HttpClientException $e) {
+        } catch (HttpClientException | RequestException $e) {
             flash($e->getMessage())->error();
         }
         return redirect()->route('urls.show', ['url' => $id]);
