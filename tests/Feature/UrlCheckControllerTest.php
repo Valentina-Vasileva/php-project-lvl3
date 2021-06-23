@@ -31,11 +31,11 @@ class UrlCheckControllerTest extends TestCase
             throw new \Exception("Cannot get content from fixture");
         }
 
-        Http::fake([$urlData['name'] => Http::response($testHtml, 255)]);
+        Http::fake([$urlData['name'] => Http::response($testHtml, 200)]);
 
         $expectedData = [
             'url_id' => $newUrlId,
-            'status_code' => 255,
+            'status_code' => 200,
             'h1' => 'test_header',
             'keywords' => 'test_word',
             'description' => 'test_description'
