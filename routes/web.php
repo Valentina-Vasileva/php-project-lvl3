@@ -18,7 +18,8 @@ use App\Http\Controllers\UrlCheckController;
 
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 
-Route::resources([
-    'urls' => UrlController::class,
-    'urls.checks' => UrlCheckController::class
-]);
+Route::resource('urls', UrlController::class)
+    ->only(['index', 'store', 'show']);
+
+Route::resource('urls.checks', UrlCheckController::class)
+    ->only(['store']);
