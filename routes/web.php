@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\UrlController;
 use App\Http\Controllers\UrlCheckController;
 
@@ -16,7 +16,7 @@ use App\Http\Controllers\UrlCheckController;
 |
 */
 
-Route::get('/', [PageController::class, 'welcome'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 
 Route::resources([
     'urls' => UrlController::class,
