@@ -16,14 +16,10 @@ class UrlController extends Controller
      */
     public function index()
     {
-        $lastChecksId = DB::table('url_checks')
-            ->select(DB::raw('url_id, MAX(id) as last_check_id'))
-            ->groupBy('url_id')
-            ->pluck('last_check_id')
-            ->all();
-
         $lastChecks = DB::table('url_checks')
-            ->whereIn('id', $lastChecksId)
+            ->orderBy('url_id')
+            ->latest()
+            ->distinct('url_id')
             ->get()
             ->keyBy('url_id');
 
