@@ -28,7 +28,7 @@ class UrlController extends Controller
             ->keyBy('url_id');
 
         $urls = DB::table('urls')
-            ->orderBy('id', 'asc')
+            ->oldest()
             ->get();
 
         return view('url.index', compact('urls', 'lastChecks'));
