@@ -29,7 +29,7 @@ class UrlController extends Controller
 
         $urls = DB::table('urls')
             ->oldest()
-            ->get();
+            ->paginate();
 
         return view('url.index', compact('urls', 'lastChecks'));
     }
@@ -89,7 +89,7 @@ class UrlController extends Controller
         $urlChecks = DB::table('url_checks')
             ->where('url_id', $id)
             ->latest()
-            ->get();
+            ->paginate();
 
         return view('url.show', compact('url', 'urlChecks'));
     }

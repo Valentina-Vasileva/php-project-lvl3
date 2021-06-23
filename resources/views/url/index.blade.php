@@ -27,5 +27,10 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                {{ $urls->links() }}
+            </div>
+        </div>
     </div>
 @endsection

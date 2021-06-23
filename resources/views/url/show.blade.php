@@ -55,5 +55,10 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                {{ $urlChecks->links() }}
+            </div>
+        </div>
     </div>
 @endsection
