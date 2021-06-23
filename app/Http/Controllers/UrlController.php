@@ -88,7 +88,7 @@ class UrlController extends Controller
 
         $urlChecks = DB::table('url_checks')
             ->where('url_id', $id)
-            ->orderBy('id', 'desc')
+            ->latest()
             ->get();
 
         return view('url.show', compact('url', 'urlChecks'));
