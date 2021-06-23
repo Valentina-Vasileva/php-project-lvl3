@@ -30,8 +30,8 @@ class UrlCheckController extends Controller
             $h1 = optional($document->first('h1'))->text();
             $keywords = optional($document->first('meta[name=keywords]'))->getAttribute('content');
             $description = optional($document->first('meta[name=description]'))->getAttribute('content');
-            $newUrl = DB::table('url_checks')->insertGetId(
-                [
+
+            DB::table('url_checks')->insert([
                     'url_id' => $id,
                     'created_at' => Carbon::now()->toString(),
                     'status_code' => $response->status(),
@@ -39,8 +39,8 @@ class UrlCheckController extends Controller
                     'keywords' => $keywords,
                     'description' => $description,
                     'updated_at' => Carbon::now()->toString()
-                ]
-            );
+            ]);
+
             flash(__('messages.Page has been checked successfully'))->success();
         } catch (HttpClientException | RequestException $e) {
             flash($e->getMessage())->error();
